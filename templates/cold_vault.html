@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+{% block active_2 %}
+    class="active"
+{% endblock %}
+{% block main %}
+<div class="list-group">
+    <a href="#" class="list-group-item active">
+        Vaults 列表
+    </a>
+    {% for V_item in dic['VaultList'] %}
+        <a href="{{ url_for('cold_detail',vault_name=V_item['VaultName']) }}" class="list-group-item">{{ V_item['VaultName'] }}</a>
+    {% endfor %}
+</div>
+{% endblock %}

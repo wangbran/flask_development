@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+{% block active_2 %}
+    class="active"
+{% endblock %}
+{% block main %}
+<div class="list-group">
+    <a href="{{ url_for('cold') }}" class="list-group-item active">
+        {{ vault_name }} / Archives 列表
+        <form method="post" enctype="multipart/form-data" class="upload" action="{{ url_for('upload_arc',vault_name=vault_name) }}">
+            <input type="submit" name="上传" class="type" />
+            <input type="file" name="filename" class="file"  />
+        </form>
+    </a>
+    {% if  results['ArchiveList'] %}
+        {% for Archive in results['ArchiveList'] %}
+            <a href="#" class="list-group-item">{{ Archive['ArchiveDescription'] }}
+                <form action="{{ url_for('del_arc',vault_name=vault_name,archive_id=Archive['ArchiveId']) }}" method="get">
+                    <button type="submit" class="add">删除</button>
+                </form>
+                <form action="#" method="get">
+                    <button type="submit" class="add">下载</button>
+                </form>
+            </a>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

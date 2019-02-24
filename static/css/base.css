@@ -1,0 +1,58 @@
+body{
+    background: #f3f3f3;
+}
+
+.tab {
+    width: 65%;
+    margin:0 auto;
+}
+
+.content{
+    background: #fff;
+    width: 65%;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 10px;
+}
+
+div#bs-example-navbar-collapse-1 li {
+    margin-left:20px;
+}
+
+form {
+    float: right;
+    display: inline;
+    margin-right: 20px
+}
+
+a.list-group-item.active {
+    overflow: hidden;
+    height: 50px;
+}
+
+form.upload {
+    width: 600px;
+    display: inline;
+    float:right;
+    margin: 0;
+}
+form.upload input {
+    float:right;
+    /*margin-left: 20px;*/
+    margin: 0 auto;
+    text-align: center;
+    height: 100%;
+}
+
+input.bucket_name {
+    width: 40%;
+    float:right;
+    height: 30%;
+    text-align: center;
+}
+
+input.submit_bucket {
+    width:50px;
+    float:right;
+    background-color: brown;
+}

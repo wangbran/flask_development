@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+{% block active_1 %}
+    class="active"
+{% endblock %}
+{% block main %}
+<div class="list-group">
+    <a href="{{ url_for('hot') }}" class="list-group-item active">
+        {{ bucket_name }} / Objects 列表
+    </a>
+    {% for object in objects['Contents'] %}
+        <a href="{{ url_for('download',bucket_name=bucket_name,object_name=object['Key']) }}" class="list-group-item">{{ object['Key'] }}</a>
+    {% endfor %}
+</div>
+{% endblock %}

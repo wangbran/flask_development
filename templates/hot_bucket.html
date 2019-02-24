@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+{% block active_1 %}
+    class="active"
+{% endblock %}
+{% block main %}
+<div class="list-group">
+    <a href="#" class="list-group-item active">
+        Bucket列表
+        <form method="post" enctype="multipart/form-data" class="upload" action="{{ url_for('create_bucket') }}">
+            <input type="text" name="bucket_name" class="form-control bucket_name" placeholder="输入桶名称">
+            <input type="submit" name="创建" class="type submit_bucket" value="创建"/>
+        </form>
+    </a>
+    {% for bucket in dic['Buckets'] %}
+        <a href="{{ url_for('detail',bucket_name=bucket['Name']) }}" class="list-group-item">{{ bucket['Name'] }}
+            <form action="{{ url_for('empty_bucket',bucket_name=bucket['Name']) }}" method="get">
+                <button type="submit" class="add">清空</button>
+            </form>
+            <form action="{{ url_for('del_bucket',bucket_name=bucket['Name']) }}" method="get">
+                <button type="submit" class="add">删除</button>
+            </form>
+        </a>
+    {% endfor %}
+</div>
+{% endblock %}

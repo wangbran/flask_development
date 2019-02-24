@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+{% block active_1 %}
+    class="active"
+{% endblock %}
+{% block main %}
+<div class="list-group">
+    <a href="{{ url_for('hot') }}" class="list-group-item active">
+        {{ bucket_name }} / Objects 列表
+        <form method="post" enctype="multipart/form-data" class="upload" action="{{ url_for('upload',bucket_name=bucket_name) }}">
+            <input type="submit" name="上传" class="type" />
+            <input type="file" name="filename" class="file"  />
+        </form>
+    </a>
+    {% for object in objects['Contents'] %}
+        <a href="#" class="list-group-item">{{ object['Key'] }}  --
+            {% if s3.Object(bucket_name,object['Key']).metadata['X-Amz-Storage-Class']=='GLACIER' %}
+                GLACIER
+                <form action="{{ url_for('restore_obj',bucket_name=bucket_name,object_name=object['Key']) }}" method="get">
+                    <button type="submit" class="add">恢复</button>
+                </form>
+            {% else %}
+                standard s3
+                <form action="{{ url_for('del_obj',bucket_name=bucket_name,object_name=object['Key']) }}" method="get">
+                    <button type="submit" class="add">删除</button>
+                </form>
+                <form action="{{ url_for('download',bucket_name=bucket_name,object_name=object['Key']) }}" method="get">
+                    <button type="submit" class="add">下载</button>
+                </form>
+            {% endif %}
+        </a>
+    {% endfor %}
+</div>
+{% endblock %}
